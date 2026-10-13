@@ -1,0 +1,500 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #08090d;
+  color: #38bdf8;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.app-wrapper {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  padding: 24px 18px 160px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Install Bar */
+.install-bar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  background: #11141c;
+  border: 1px solid #1e3a8a;
+  padding: 8px 14px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  color: #93c5fd;
+}
+
+.install-bar button {
+  background: #1d72fe;
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Header */
+.header {
+  margin-bottom: 22px;
+}
+
+.header h1 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  color: #38bdf8;
+  text-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header .subtitle {
+  font-size: 0.88rem;
+  color: #64748b;
+  margin-top: 5px;
+  font-weight: 400;
+}
+
+/* Import Button */
+.import-btn {
+  width: 100%;
+  background: #1d72fe;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 30px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(29, 114, 254, 0.45);
+  margin-bottom: 22px;
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+.import-btn:active {
+  transform: scale(0.98);
+  filter: brightness(0.9);
+}
+
+/* Dropdown */
+.filter-container {
+  margin-bottom: 24px;
+}
+
+.filter-container label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #475569;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.custom-select-box {
+  position: relative;
+  background: #11141c;
+  border-radius: 12px;
+  border: 1px solid #1a202c;
+}
+
+.custom-select-box select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding: 13px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  appearance: none;
+  cursor: pointer;
+}
+
+.custom-select-box::after {
+  content: "▾";
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
+  pointer-events: none;
+}
+
+/* List Header */
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.list-header h2 {
+  font-size: 1.55rem;
+  line-height: 1.15;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.search-input-wrapper {
+  background: #11141c;
+  border: 1px solid #1a202c;
+  border-radius: 22px;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 190px;
+}
+
+.search-input-wrapper svg {
+  width: 15px;
+  height: 15px;
+  stroke: #64748b;
+  flex-shrink: 0;
+}
+
+.search-input-wrapper input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+.search-input-wrapper input::placeholder {
+  color: #64748b;
+}
+
+/* Track Cards */
+.tracks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.track-card {
+  background: #11141c;
+  border: 1px solid #192033;
+  border-radius: 16px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.track-card.active {
+  border-color: #38bdf8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.2);
+}
+
+.track-card.played-today {
+  opacity: 0.45;
+  filter: grayscale(40%);
+}
+
+.track-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  margin-right: 8px;
+}
+
+.track-main .music-glyph {
+  font-size: 1.15rem;
+  color: #475569;
+}
+
+.track-text {
+  overflow: hidden;
+}
+
+.track-name {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-sub {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-top: 3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.daily-status {
+  font-size: 0.65rem;
+  background: #064e3b;
+  color: #6ee7b7;
+  padding: 1px 6px;
+  border-radius: 4px;
+  text-transform: none;
+  font-weight: 700;
+}
+
+.track-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-btn {
+  background: transparent;
+  border: 1px solid #1e3a8a;
+  color: #38bdf8;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.delete-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid #3d1c24;
+  color: #fda4af;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-play-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1d72fe;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(29, 114, 254, 0.4);
+}
+
+.track-card.played-today .card-play-btn {
+  background: #1e293b;
+  color: #64748b;
+  box-shadow: none;
+}
+
+.card-play-btn svg,
+.main-play-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: #ffffff;
+}
+
+/* Floating Bottom Player */
+.bottom-dock {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #08090d;
+  border-top: 1px solid #192033;
+  padding: 14px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+}
+
+.dock-controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 8px;
+}
+
+.dock-controls button {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-play-btn {
+  width: 44px;
+  height: 44px;
+  background: #1d72fe !important;
+  border-radius: 50% !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 16px rgba(29, 114, 254, 0.55);
+}
+
+.progress-row {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-row span {
+  font-size: 0.74rem;
+  color: #64748b;
+  min-width: 32px;
+}
+
+.progress-row input[type="range"] {
+  flex: 1;
+  accent-color: #1d72fe;
+  height: 3px;
+  cursor: pointer;
+}
+
+.dock-meta {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.dock-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.dock-subtitle {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 3px;
+}
+
+/* In-App Edit Modal Overlay */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-card {
+  background: #11141c;
+  border: 1px solid #1e3a8a;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 380px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+.modal-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal-field label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.modal-field input {
+  background: #08090d;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.modal-field input:focus {
+  border-color: #38bdf8;
+}
+
+.modal-btn-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.modal-btn-row button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.modal-cancel {
+  background: #1e293b;
+  color: #94a3b8;
+}
+
+.modal-save {
+  background: #1d72fe;
+  color: #ffffff;
+}

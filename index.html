@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>RISHI MUSIC</title>
+
+  <!-- PWA Installation -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#08090d" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Rishi Music" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%2308090d'/%3E%3Ccircle cx='256' cy='256' r='180' fill='%231d72fe'/%3E%3Ctext x='256' y='295' font-family='Arial, sans-serif' font-size='110' font-weight='900' fill='%23ffffff' text-anchor='middle'%3ERISHI%3C/text%3E%3C/svg%3E" />
+
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+    <div id="installBar" class="install-bar">
+      <span>Install Rishi Music on your phone</span>
+      <button id="installTriggerBtn">Install</button>
+    </div>
+
+    <header class="header">
+      <h1>
+        <span>♬</span> RISHI MUSIC
+      </h1>
+      <div class="subtitle">Personal Audio Station</div>
+    </header>
+
+    <input type="file" id="fileSelector" accept="audio/*" multiple style="display: none;" />
+    <button class="import-btn" id="importBtn">+ Import Track</button>
+
+    <div class="filter-container">
+      <label>PLAYLIST / ARTIST</label>
+      <div class="custom-select-box">
+        <select id="directorFilter">
+          <option value="ALL">ALL DIRECTORS</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="list-header">
+      <h2>All<br />Songs</h2>
+      <div class="search-input-wrapper">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search song name..." />
+      </div>
+    </div>
+
+    <div class="tracks-container" id="tracksContainer"></div>
+
+    <footer class="bottom-dock">
+      <div class="dock-controls">
+        <button id="prevBtn" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="19,20 9,12 19,4"></polygon>
+            <rect x="5" y="4" width="3" height="16"></rect>
+          </svg>
+        </button>
+
+        <button id="mainPlayBtn" class="main-play-btn" aria-label="Play/Pause">
+          <svg id="mainPlayIcon" viewBox="0 0 24 24">
+            <polygon points="6,4 20,12 6,20"></polygon>
+          </svg>
+        </button>
+
+        <button id="nextBtn" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5,4 15,12 5,20"></polygon>
+            <rect x="16" y="4" width="3" height="16"></rect>
+          </svg>
+        </button>
+      </div>
+
+      <div class="progress-row">
+        <span id="currentTime">0:00</span>
+        <input type="range" id="progressBar" min="0" max="100" value="0" />
+        <span id="duration">0:00</span>
+      </div>
+
+      <div class="dock-meta">
+        <div id="dockTitle" class="dock-title">No track playing</div>
+        <div id="dockSubtitle" class="dock-subtitle">Select a song from your library</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Custom Edit Modal -->
+  <div id="editModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3>Edit Track Info</h3>
+      <div class="modal-field">
+        <label>Song Title</label>
+        <input type="text" id="editTitleInput" placeholder="Enter song title" />
+      </div>
+      <div class="modal-field">
+        <label>Director / Artist</label>
+        <input type="text" id="editDirectorInput" placeholder="Enter director or artist" />
+      </div>
+      <div class="modal-btn-row">
+        <button id="cancelEditBtn" class="modal-cancel">Cancel</button>
+        <button id="saveEditBtn" class="modal-save">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audioEl" preload="auto"></audio>
+  <script src="app.js"></script>
+</body>
+</html>
